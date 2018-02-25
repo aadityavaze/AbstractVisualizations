@@ -1,0 +1,44 @@
+
+
+body{
+    background: #ffffff;
+    color: #212121;
+   font-family: 'Hind Vadodara';
+}
+
+.header{
+    float:center;
+
+     
+}
+.header h1{
+    margin: 0px;
+    font-size: 100px;
+    font-weight: 300; 
+    text-align: center;
+  
+    letter-spacing: 0.05em;
+    margin-bottom: 0px;
+    float: center;
+    
+}
+
+.name{
+     float: center;
+   
+   
+}
+
+
+.support-text{
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-family: 'Hind Vadodara';
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0px;
+}
+
+.plot{
+    
+}

@@ -11,12 +11,21 @@
         project.currentStyle = {
             fillColor: 'black'
         };
+        var myPoint = new Point(10, 20);
+        console.log(myPoint); // { x: 10, y: 20 }
+        var myPath = new Path();
+        myPath.add(myPoint);
 
-        var ballPositions = [[255, 129], [610, 73], [486, 363],
+        var topLeft = new Point(550, 500);
+        var rectSize = new Size(200, 100);
+        var rect = new Path.Rectangle(topLeft, rectSize);
+
+
+        var ballPositions = [[255, 129], [61, 73], [486, 363],
             [117, 459], [484, 726], [843, 306], [789, 615], [1049, 82],
             [1292, 428], [1117, 733], [1352, 86], [92, 798]];
 
-        var handle_len_rate = 2.4;
+        var handle_len_rate =2.4;
         var circlePaths = [];
         var radius = 50;
         for (var i = 0, l = ballPositions.length; i < l; i++) {
@@ -29,7 +38,7 @@
 
         var largeCircle = new Path.Circle({
             center: [676, 433],
-            radius: 100
+            radius: 70
         });
         circlePaths.push(largeCircle);
 
@@ -45,7 +54,7 @@
 
             for (var i = 0, l = paths.length; i < l; i++) {
                 for (var j = i - 1; j >= 0; j--) {
-                    var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 300);
+                    var path = metaball(paths[i], paths[j], 0.5, handle_len_rate, 250);
                     if (path) {
                         connections.appendTop(path);
                         path.removeOnMove();
