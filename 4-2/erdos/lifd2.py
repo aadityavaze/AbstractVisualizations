@@ -6,7 +6,7 @@ import math
 
 #polynomial objective function
 def f(x,y):
-    return ((x-roots[0][0])*(x-roots[0][0])+(y-roots[0][1])*(y-roots[0][1]))*((x-roots[1][0])*(x-roots[1][0])+(y-roots[1][1])*(y-roots[1][1]))*((x-roots[2][0])*(x-roots[2][0])+(y-roots[2][1])*(y-roots[2][1]))-1
+    return ((x-roots[0][0])*(x-roots[0][0])+(y-roots[0][1])*(y-roots[0][1]))*((x-roots[1][0])*(x-roots[1][0])+(y-roots[1][1])*(y-roots[1][1]))-1
 
 def derivativeX(x,y):
     return (f(x+e,y)-f(x,y))/e
@@ -47,15 +47,15 @@ lim=5
 
 
 #points A, B, C
-roots=[[0, 0], [2, 0], [0.5, 1]]
+roots=[[0, 0], [-4, 0]]
 
 
 #initial guesses for corresponding starting point used to trace on each loop
-approxY=[-2,-2,roots[2][0]+3]
+approxY=[-2,-2]
 
 #declare 2d start array
 start=[]
-for j in range(3):
+for j in range(2):
         column = []
         for i in range(2):
                 column.append(0)
@@ -64,14 +64,12 @@ startLength=0
 finalLength=0
 dd=0.01
 
-checkArray=[[roots[2][0], roots[2][1]],[roots[2][0]+dd, roots[2][1]],[roots[2][0], roots[2][1]+dd]]
 disArray=[0,0,0]
-for ch in range(1):
+for ch in range(700):
     totalDis=0
     countLoops=0
-    roots[2][0]=checkArray[ch][0]
-    roots[2][1]=checkArray[ch][1]
-    for j in range(3):
+    roots[1][0]+=0.01
+    for j in range(2):
         dis=0
         repeat=0
         x=roots[j][0]
@@ -91,13 +89,13 @@ for ch in range(1):
                 x=x+h
                 y=y+((h*K)/H)
                 y=iterateY(x,y,8)
-                plt.plot([px,x],[py,y],'-b')
+                #plt.plot([px,x],[py,y],'-b')
             elif K!=0:
                 k=s*sign(K)
                 y=y+k
                 x=x+((k*H)/K)
                 x=iterateX(x,y,8)
-                plt.plot([px,x],[py,y],'-b')
+                #plt.plot([px,x],[py,y],'-b')
             for k in range(j):
                 if (distance(start[k][0],start[k][1],x,y)<0.2):
                     repeat=1
@@ -115,13 +113,9 @@ for ch in range(1):
             print("This is a repeated loop")
 
     print("total loop length", totalDis)
-    disArray[ch]=totalDis
+    plt.plot(roots[1][0], totalDis, '-bo')
 
-denominator = math.sqrt((disArray[1]-disArray[0])*(disArray[1]-disArray[0])+(disArray[2]-disArray[0])*(disArray[2]-disArray[0]))
-roots[2][0]+= dd*(disArray[1]-disArray[0])/denominator
-roots[2][1]+= dd*(disArray[2]-disArray[0])/denominator
-print("final x", roots[2][0])
-print("final y", roots[2][1])
+
 plt.xlim(-lim,lim)
 plt.ylim(-lim,lim)
 plt.show()
